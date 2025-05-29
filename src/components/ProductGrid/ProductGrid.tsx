@@ -3,8 +3,33 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
+type Product = {
+  title: string;
+  image: string;
+  imagestep?: string;
+  titlestep?: string;
+  subtitle: string;
+  features: string[];
+  water?: string;
+  potLife?: string;
+  coverage?: string;
+  mixRatio?: string;
+  shelfLife?: string;
+  color: {
+    base: string;
+    text: string;
+    border: string;
+    bg: string;
+    badgeBg: string;
+    from: string;
+    to: string;
+  };
+};
+
+
 const ProductGrid = () => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
 
   const products = [
     {

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { Toaster } from 'sonner';
 
 import Banner from '../components/Banner/Banner';
@@ -12,44 +13,51 @@ import About from '@/components/About/About';
 import Contact from '@/components/contact/contact';
 import FixItBadge from '@/components/badge/fixitbadge';
 
+import Loader from '@/components/Loader/Loader';
+
 export default function HomePage() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <>
-      {/* 🔥 Toaster for toast notifications */}
       <Toaster richColors position="top-center" />
 
-      <main>
-        <section id="home">
-          <Banner />
-          <div className="absolute bottom-0 left-[75%] sm:left-3/4 md:left-[90%] transform -translate-x-1/2 translate-y-1/2 z-20">
-            <FixItBadge />
-          </div>
-        </section>
+      {loading && <Loader onFinish={() => setLoading(false)} />}
 
-        <section id="products">
-          <ProductGrid />
-        </section>
+      {!loading && (
+        <main>
+          <section id="home">
+            <Banner />
+            <div className="absolute bottom-0 left-[75%] sm:left-3/4 md:left-[90%] transform -translate-x-1/2 translate-y-1/2 z-20">
+              <FixItBadge />
+            </div>
+          </section>
 
-        <section id="about">
-          <About />
-        </section>
+          <section id="products">
+            <ProductGrid />
+          </section>
 
-        <section id="group">
-          <Group />
-        </section>
+          <section id="about">
+            <About />
+          </section>
 
-        <section id="blogs">
-          <Blogs />
-        </section>
+          <section id="group">
+            <Group />
+          </section>
 
-        {/* <section id="reel">
-          <Reel />
-        </section> */}
+          <section id="blogs">
+            <Blogs />
+          </section>
 
-        <section id="contact">
-          <Contact />
-        </section>
-      </main>
+          {/* <section id="reel">
+            <Reel />
+          </section> */}
+
+          <section id="contact">
+            <Contact />
+          </section>
+        </main>
+      )}
     </>
   );
 }

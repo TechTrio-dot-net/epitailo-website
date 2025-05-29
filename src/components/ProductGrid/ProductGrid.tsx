@@ -26,10 +26,8 @@ type Product = {
   };
 };
 
-
 const ProductGrid = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-
 
   const products = [
     {
@@ -155,12 +153,29 @@ const ProductGrid = () => {
 
   return (
     <>
-      <div className="m-28 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-8">
+      <div className="m-28 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
         {products.map((product, i) => (
-          <div
+          <motion.div
             key={i}
             onClick={() => setSelectedProduct(product)}
-            className="cursor-pointer bg-white transition p-4"
+            className="cursor-pointer bg-white transition p-4 will-change-transform"
+            initial={{
+              opacity: 0,
+              x: i < 3 ? -100 : 100,
+              y: 50,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              y: 0,
+            }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.7,
+              ease: 'easeInOut',
+              delay: i * 0.1,
+            }}
+            layout
           >
             <Image
               src={product.image}
@@ -176,20 +191,25 @@ const ProductGrid = () => {
                     <div className="bg-gray-700 text-white px-2 py-0.5 tracking-tight">
                       {product.title.split(' - ')[0].slice(0, 2)}
                     </div>
-                    <div className={`text-white px-2 py-0.5 tracking-tight ${product.color?.badgeBg || 'bg-blue-500'}`}>
+                    <div
+                      className={`text-white px-2 py-0.5 tracking-tight ${
+                        product.color?.badgeBg || 'bg-blue-500'
+                      }`}
+                    >
                       {product.title.split(' - ')[0].slice(2)}
                     </div>
                   </div>
                   <div className="text-base font-semibold text-center">
-                    {product.title.includes(' - ') ? product.title.split(' - ')[1] : product.title}
+                    {product.title.includes(' - ')
+                      ? product.title.split(' - ')[1]
+                      : product.title}
                   </div>
                 </div>
               ) : (
                 product.title
               )}
             </h2>
-
-          </div>
+          </motion.div>
         ))}
       </div>
 
@@ -204,10 +224,11 @@ const ProductGrid = () => {
             onClick={() => setSelectedProduct(null)}
           >
             <motion.div
-              className="bg-white max-w-7xl w-full rounded-xl overflow-hidden shadow-lg flex flex-col md:flex-row relative"
+              className="bg-white max-w-7xl w-full rounded-xl overflow-hidden shadow-lg flex flex-col md:flex-row relative will-change-transform"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 30 }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -239,7 +260,9 @@ const ProductGrid = () => {
                       <div className="bg-gray-700 text-white px-2 py-1 tracking-tight">
                         {selectedProduct.title.split(' - ')[0].slice(0, 2)}
                       </div>
-                      <div className={`text-white px-2 py-1 tracking-tight ${selectedProduct.color.badgeBg}`}>
+                      <div
+                        className={`text-white px-2 py-1 tracking-tight ${selectedProduct.color.badgeBg}`}
+                      >
                         {selectedProduct.title.split(' - ')[0].slice(2)}
                       </div>
                     </div>
@@ -255,7 +278,11 @@ const ProductGrid = () => {
                 {/* Key Features */}
                 {selectedProduct.features && selectedProduct.features.length > 0 && (
                   <div>
-                    <h4 className={`text-white ${selectedProduct.color.badgeBg} px-2 py-1 rounded inline-block font-semibold text-lg mb-2`}>KEY FEATURES</h4>
+                    <h4
+                      className={`text-white ${selectedProduct.color.badgeBg} px-2 py-1 rounded inline-block font-semibold text-lg mb-2`}
+                    >
+                      KEY FEATURES
+                    </h4>
                     <ul className="list-disc list-inside space-y-1 text-gray-700">
                       {selectedProduct.features.map((feature, idx) => (
                         <li key={idx}>{feature}</li>
@@ -268,7 +295,9 @@ const ProductGrid = () => {
                 <div className="grid grid-cols-3 gap-4 text-sm font-semibold">
                   {selectedProduct.water && (
                     <div>
-                      <p className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}>
+                      <p
+                        className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}
+                      >
                         WATER DEMAND
                       </p>
                       <p className="mt-1 font-semibold">{selectedProduct.water}</p>
@@ -276,7 +305,9 @@ const ProductGrid = () => {
                   )}
                   {selectedProduct.coverage && (
                     <div>
-                      <p className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}>
+                      <p
+                        className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}
+                      >
                         COVERAGE
                       </p>
                       <p className="mt-1 font-semibold">{selectedProduct.coverage}</p>
@@ -284,7 +315,9 @@ const ProductGrid = () => {
                   )}
                   {selectedProduct.potLife && (
                     <div>
-                      <p className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}>
+                      <p
+                        className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}
+                      >
                         POT LIFE
                       </p>
                       <p className="mt-1 font-semibold">{selectedProduct.potLife}</p>
@@ -292,7 +325,9 @@ const ProductGrid = () => {
                   )}
                   {selectedProduct.mixRatio && (
                     <div>
-                      <p className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}>
+                      <p
+                        className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}
+                      >
                         MIX RATIO
                       </p>
                       <p className="mt-1 font-semibold">{selectedProduct.mixRatio}</p>
@@ -300,7 +335,9 @@ const ProductGrid = () => {
                   )}
                   {selectedProduct.shelfLife && (
                     <div>
-                      <p className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}>
+                      <p
+                        className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}
+                      >
                         SHELF LIFE
                       </p>
                       <p className="mt-1 font-semibold">{selectedProduct.shelfLife}</p>
@@ -308,26 +345,30 @@ const ProductGrid = () => {
                   )}
                 </div>
 
-                {/* Steps Image and Title below */}
+                {/* How to Apply Steps Image */}
                 {selectedProduct.imagestep && (
-                  <div className="mt-6">
-                    <h3 className="mb-4 text-lg font-semibold text-center">{selectedProduct.titlestep || 'Steps to Apply'}</h3>
+                  <div className="mt-8">
+                    <h3 className="text-lg font-bold mb-4">{selectedProduct.titlestep}</h3>
                     <Image
                       src={selectedProduct.imagestep}
-                      alt={`Steps to apply for ${selectedProduct.title}`}
-                      width={400}
+                      alt={`${selectedProduct.title} Steps`}
+                      width={600}
                       height={400}
-                      className="w-full max-h-[400px] object-contain"
+                      className="w-full max-h-[300px] object-contain rounded-md"
                     />
                   </div>
                 )}
               </div>
-
             </motion.div>
-
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style jsx global>{`
+        .will-change-transform {
+          will-change: transform;
+        }
+      `}</style>
     </>
   );
 };

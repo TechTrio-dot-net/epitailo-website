@@ -8,7 +8,6 @@ type Product = {
   image: string;
   imagestep?: string;
   titlestep?: string;
-  subtitle: string;
   features: string[];
   water?: string;
   potLife?: string;
@@ -26,16 +25,24 @@ type Product = {
   };
 };
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
 const ProductGrid = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const products = [
+  const products: Product[] = [
     {
       title: 'ET1 - SMALL SIZED FLOOR TILE ADHESIVE',
       image: '/images/ET1.png',
       imagestep: '/images/ET 1 Steps.png',
       titlestep: 'How to Apply - ET1 - SMALL SIZED FLOOR TILE ADHESIVE',
-      subtitle: 'TechTile Adhesive',
       features: ['Ready To Use', 'High-quality Bonding Strength', 'Saves Time And Labour'],
       water: '23%–25%',
       potLife: '1.5 hrs @ 23°C',
@@ -55,7 +62,6 @@ const ProductGrid = () => {
       image: '/images/ET2.png',
       imagestep: '/images/ET 2 Steps.png',
       titlestep: 'How to Apply - ET2 - MEDIUM SIZED WALL TILE ADHESIVE',
-      subtitle: 'TechTile Adhesive',
       features: ['Excellent Bond Strength', 'Self-curing & Rapid Setting', 'No Shrinkage, No Cracks'],
       water: '24%–26%',
       potLife: '1.5 - 2 hours @ 23°C',
@@ -75,7 +81,6 @@ const ProductGrid = () => {
       image: '/images/ET3.png',
       imagestep: '/images/ET 3 Steps.png',
       titlestep: 'How to Apply - ET3 - 4X8 WALL TILES & LARGE FORMAT TILE ADHESIVE',
-      subtitle: 'TechTile Adhesive',
       features: ['Slip-resistant Formula', 'Long-lasting Adhesion', 'Works On Multiple Surfaces'],
       water: '24%–27%',
       potLife: '1.5 – 2 Hours @ 23°C',
@@ -95,7 +100,7 @@ const ProductGrid = () => {
       image: '/images/ET4.png',
       imagestep: '/images/ET 4 Steps.png',
       titlestep: 'How to Apply - ET4 - HEAVY DUTY STONE ADHESIVE',
-      subtitle: 'TechTile Adhesive',
+
       features: ['High Compressive Strength', 'Superior Water Resistance', 'Perfect For Indoor & Outdoor Use'],
       water: '26%–28%',
       potLife: '1.5 - 2 hrs @ 23°C',
@@ -115,7 +120,7 @@ const ProductGrid = () => {
       image: '/images/BJM.png',
       imagestep: '/images/ET 5 Steps.png',
       titlestep: 'How to Apply - BLOCK JOINTING MORTAR',
-      subtitle: 'TechTile Adhesive',
+
       features: ['Pre-mixed, only water to be added', 'Thin joint application (2–3 mm)', 'Excellent adhesion & bonding', 'Crack & shrink resistant', 'Cost-effective & saves time'],
       water: '24%–28%',
       potLife: '2 HOURS',
@@ -135,7 +140,7 @@ const ProductGrid = () => {
     {
       title: 'SP-5000 PREMIUM EPOXY TILE GROUT',
       image: '/images/Grout.png',
-      subtitle: 'TechTile Adhesive',
+
       features: ['100% Stain Free', 'Anti-Bacterial & Anti-Fungal', 'Strong & Durable', 'Chemical & Temperature Resistant', 'Non-Flammable | No Solvents'],
       potLife: '1 hour (approx.)',
       shelfLife: '12 months',
@@ -153,67 +158,58 @@ const ProductGrid = () => {
 
   return (
     <>
-      <div className="m-28 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
-        {products.map((product, i) => (
-          <motion.div
-            key={i}
-            onClick={() => setSelectedProduct(product)}
-            className="cursor-pointer bg-white transition p-4 will-change-transform"
-            initial={{
-              opacity: 0,
-              x: i < 3 ? -100 : 100,
-              y: 50,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-              y: 0,
-            }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.7,
-              ease: 'easeInOut',
-              delay: i * 0.1,
-            }}
-            layout
-          >
-            <Image
-              src={product.image}
-              alt={product.title}
-              width={300}
-              height={300}
-              className="w-full h-56 object-contain"
-            />
-            <h2 className="mt-4 text-lg font-semibold text-center">
-              {product.title.startsWith('ET') ? (
-                <div className="flex flex-col items-center space-y-1">
-                  <div className="flex overflow-hidden rounded shadow text-sm font-bold">
-                    <div className="bg-gray-700 text-white px-2 py-0.5 tracking-tight">
-                      {product.title.split(' - ')[0].slice(0, 2)}
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 gap-8 m-10 p-10 max-w-6xl mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
+        {products.map((product, i) => {
+          const direction = i % 2 === 0 ? -100 : 100;
+          return (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: direction }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ type: 'spring', stiffness: 80, damping: 18, mass: 0.5 }}
+              viewport={{ once: true, amount: 0.3 }}
+              onClick={() => setSelectedProduct(product)}
+              className="cursor-pointer bg-white transition p-4 rounded-lg shadow hover:shadow-lg"
+              whileHover={{ scale: 1.03 }}
+            >
+              <Image
+                src={product.image}
+                alt={product.title}
+                width={300}
+                height={300}
+                className="w-full h-72 object-contain"
+              />
+              <h2 className="mt-4 text-lg font-semibold text-center">
+                {product.title.startsWith('ET') ? (
+                  <div className="flex flex-col items-center space-y-1">
+                    <div className="flex overflow-hidden rounded shadow text-sm font-bold">
+                      <div className="bg-gray-700 text-white px-2 py-0.5 tracking-tight">
+                        {product.title.split(' - ')[0].slice(0, 2)}
+                      </div>
+                      <div
+                        className={`${product.color?.badgeBg || 'bg-blue-500'} text-white px-2 py-0.5 tracking-tight`}
+                      >
+                        {product.title.split(' - ')[0].slice(2)}
+                      </div>
                     </div>
-                    <div
-                      className={`text-white px-2 py-0.5 tracking-tight ${
-                        product.color?.badgeBg || 'bg-blue-500'
-                      }`}
-                    >
-                      {product.title.split(' - ')[0].slice(2)}
+                    <div className="text-base font-semibold text-center">
+                      {product.title.includes(' - ') ? product.title.split(' - ')[1] : product.title}
                     </div>
                   </div>
-                  <div className="text-base font-semibold text-center">
-                    {product.title.includes(' - ')
-                      ? product.title.split(' - ')[1]
-                      : product.title}
-                  </div>
-                </div>
-              ) : (
-                product.title
-              )}
-            </h2>
-          </motion.div>
-        ))}
-      </div>
+                ) : (
+                  product.title
+                )}
+              </h2>
+            </motion.div>
+          );
+        })}
+      </motion.div>
 
-      {/* Modal */}
       <AnimatePresence>
         {selectedProduct && (
           <motion.div
@@ -224,14 +220,13 @@ const ProductGrid = () => {
             onClick={() => setSelectedProduct(null)}
           >
             <motion.div
-              className="bg-white max-w-7xl w-full rounded-xl overflow-hidden shadow-lg flex flex-col md:flex-row relative will-change-transform"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
+              className="bg-white max-w-7xl w-full rounded-xl overflow-hidden shadow-lg flex flex-col md:flex-row relative"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 260, damping: 30 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
               <button
                 onClick={() => setSelectedProduct(null)}
                 className="absolute top-3 right-4 text-gray-500 hover:text-black text-3xl font-bold z-50"
@@ -240,7 +235,6 @@ const ProductGrid = () => {
                 &times;
               </button>
 
-              {/* Left side: Main Product Image */}
               <div className="bg-gray-100 p-6 md:w-1/2 flex items-center justify-center">
                 <Image
                   src={selectedProduct.image}
@@ -251,110 +245,31 @@ const ProductGrid = () => {
                 />
               </div>
 
-              {/* Right side: Product details + Steps Image */}
-              <div className="p-6 md:w-1/2 text-gray-800 font-sans space-y-6 overflow-y-auto max-h-[80vh] flex flex-col">
-                {/* Header */}
-                <div className="flex items-center space-x-3 flex-wrap">
-                  {selectedProduct.title.startsWith('ET') && (
-                    <div className="flex overflow-hidden rounded shadow text-lg font-bold mb-2">
-                      <div className="bg-gray-700 text-white px-2 py-1 tracking-tight">
-                        {selectedProduct.title.split(' - ')[0].slice(0, 2)}
-                      </div>
-                      <div
-                        className={`text-white px-2 py-1 tracking-tight ${selectedProduct.color.badgeBg}`}
-                      >
-                        {selectedProduct.title.split(' - ')[0].slice(2)}
-                      </div>
-                    </div>
-                  )}
+              <div className="p-6 md:w-1/2 text-gray-800 font-sans space-y-6 overflow-y-auto max-h-[80vh]">
+                <h2 className="text-xl font-bold">{selectedProduct.title}</h2>
 
-                  <h2 className="text-xl font-bold max-w-full">
-                    {selectedProduct.title.includes(' - ')
-                      ? selectedProduct.title.split(' - ')[1]
-                      : selectedProduct.title}
-                  </h2>
+                <ul className="list-disc list-inside space-y-1">
+                  {selectedProduct.features.map((feature, i) => (
+                    <li key={i}>{feature}</li>
+                  ))}
+                </ul>
+
+                <div className="space-y-1 text-sm">
+                  {selectedProduct.water && <p><strong>Water:</strong> {selectedProduct.water}</p>}
+                  {selectedProduct.potLife && <p><strong>Pot Life:</strong> {selectedProduct.potLife}</p>}
+                  {selectedProduct.coverage && <p><strong>Coverage:</strong> {selectedProduct.coverage}</p>}
+                  {selectedProduct.mixRatio && <p><strong>Mix Ratio:</strong> {selectedProduct.mixRatio}</p>}
+                  {selectedProduct.shelfLife && <p><strong>Shelf Life:</strong> {selectedProduct.shelfLife}</p>}
                 </div>
 
-                {/* Key Features */}
-                {selectedProduct.features && selectedProduct.features.length > 0 && (
-                  <div>
-                    <h4
-                      className={`text-white ${selectedProduct.color.badgeBg} px-2 py-1 rounded inline-block font-semibold text-lg mb-2`}
-                    >
-                      KEY FEATURES
-                    </h4>
-                    <ul className="list-disc list-inside space-y-1 text-gray-700">
-                      {selectedProduct.features.map((feature, idx) => (
-                        <li key={idx}>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Specs Grid with 3 columns */}
-                <div className="grid grid-cols-3 gap-4 text-sm font-semibold">
-                  {selectedProduct.water && (
-                    <div>
-                      <p
-                        className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}
-                      >
-                        WATER DEMAND
-                      </p>
-                      <p className="mt-1 font-semibold">{selectedProduct.water}</p>
-                    </div>
-                  )}
-                  {selectedProduct.coverage && (
-                    <div>
-                      <p
-                        className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}
-                      >
-                        COVERAGE
-                      </p>
-                      <p className="mt-1 font-semibold">{selectedProduct.coverage}</p>
-                    </div>
-                  )}
-                  {selectedProduct.potLife && (
-                    <div>
-                      <p
-                        className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}
-                      >
-                        POT LIFE
-                      </p>
-                      <p className="mt-1 font-semibold">{selectedProduct.potLife}</p>
-                    </div>
-                  )}
-                  {selectedProduct.mixRatio && (
-                    <div>
-                      <p
-                        className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}
-                      >
-                        MIX RATIO
-                      </p>
-                      <p className="mt-1 font-semibold">{selectedProduct.mixRatio}</p>
-                    </div>
-                  )}
-                  {selectedProduct.shelfLife && (
-                    <div>
-                      <p
-                        className={`text-white ${selectedProduct.color.badgeBg} text-xs font-bold px-2 py-1 rounded inline-block`}
-                      >
-                        SHELF LIFE
-                      </p>
-                      <p className="mt-1 font-semibold">{selectedProduct.shelfLife}</p>
-                    </div>
-                  )}
-                </div>
-
-                {/* How to Apply Steps Image */}
                 {selectedProduct.imagestep && (
-                  <div className="mt-8">
-                    <h3 className="text-lg font-bold mb-4">{selectedProduct.titlestep}</h3>
+                  <div>
                     <Image
                       src={selectedProduct.imagestep}
-                      alt={`${selectedProduct.title} Steps`}
-                      width={600}
-                      height={400}
-                      className="w-full max-h-[300px] object-contain rounded-md"
+                      alt={selectedProduct.titlestep || 'Step image'}
+                      width={500}
+                      height={300}
+                      className="object-contain w-full max-h-64"
                     />
                   </div>
                 )}
@@ -363,12 +278,6 @@ const ProductGrid = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <style jsx global>{`
-        .will-change-transform {
-          will-change: transform;
-        }
-      `}</style>
     </>
   );
 };

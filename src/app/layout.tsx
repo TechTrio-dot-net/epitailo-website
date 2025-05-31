@@ -2,6 +2,8 @@ import './globals.css';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
 import { Poppins } from 'next/font/google';
+import ScrollonTop from '@/components/ScrollTop/ScrollTop';
+import EnquireNow from '@/components/Enquire/Enquire';
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -39,16 +41,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth">
+      {/* Remove this <head> section completely or keep only meta tags NOT related to fonts */}
       <head>
-        {/* Google Fonts Preconnect and Link for Compatibility */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
+        {/* Keep your SEO and OpenGraph meta tags here only */}
 
-        {/* SEO Meta Tags */}
         <meta name="title" content="Epitailo – Strong Bonds Forever" />
         <meta
           name="description"
@@ -58,25 +54,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="author" content="Plasma Chem Solution LLP" />
         <meta name="language" content="en-IN" />
 
-        {/* OpenGraph Tags */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.epitailo.com" />
         <meta property="og:title" content="Epitailo – Strong Bonds Forever" />
         <meta property="og:description" content="Browse premium tile adhesives, epoxy grouts, and more from Epitailo. Trusted across India." />
         <meta property="og:image" content="https://www.epitailo.com/assets/epitailo-og-banner.jpg" />
 
-        {/* Twitter Meta Tags (if available in future) */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Epitailo – Strong Bonds Forever" />
         <meta name="twitter:description" content="India’s trusted brand for smart bonding solutions." />
         <meta name="twitter:image" content="https://www.epitailo.com/assets/epitailo-og-banner.jpg" />
 
-        {/* Favicon */}
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <body className={poppins.className}>
         <Navbar />
         {children}
+        <ScrollonTop />
+        <EnquireNow />
         <Footer />
       </body>
     </html>

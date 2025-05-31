@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 
 const images = [
-  '/images/image1.jpg',
-  '/images/image2.jpg',
-  '/images/image3.jpg',
+  'https://res.cloudinary.com/ddztecdya/image/upload/v1748684200/hocqndm7h4jpesaedugk.jpg',
+  'https://res.cloudinary.com/ddztecdya/image/upload/v1748684198/rxkqatcb3njzojrpp9r8.jpg',
+  // '/images/image3.jpg',
 ];
 
 export default function Banner() {
@@ -69,16 +69,7 @@ export default function Banner() {
           The Strenght of any masterpiece lies in the bonds you dont see.
         </h1>
 
-        <div className="mt-10">
-          <input
-            type="email"
-            placeholder="ENTER YOUR EMAIL"
-            className="bg-transparent border-b border-white text-white placeholder-white w-64 md:w-96 p-2 outline-none"
-          />
-          <button className="ml-4 text-orange-500 font-semibold hover:underline">
-            GET STARTED
-          </button>
-        </div>
+        
       </div>
 
       {/* Social Links Bottom Left */}

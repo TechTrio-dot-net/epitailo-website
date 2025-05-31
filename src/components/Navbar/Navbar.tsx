@@ -57,7 +57,7 @@ export default function Navbar() {
             />
           </div>
         </div>
-
+{/* 
         {!menuOpen && (
           <button
             className={`hidden md:block border px-4 py-1 rounded-full transition ${
@@ -69,7 +69,7 @@ export default function Navbar() {
           >
             Get Quote
           </button>
-        )}
+        )} */}
 
         <div
           className="flex flex-col space-y-1 cursor-pointer z-30 lg:mr-28 md:mr-20 px-4"

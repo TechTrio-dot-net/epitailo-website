@@ -12,7 +12,7 @@ const Blogs: React.FC = () => {
   };
 
   return (
-    <section className="max-w-4xl mx-auto p-6 my-20">
+    <section className="max-w-4xl mx-auto p-6 my-20 mb-5">
       <h2 className="text-3xl font-bold mb-6 text-center">Our Insights</h2>
       <div className="space-y-6">
         {blogs.map((blog: BlogItem, index: number) => (

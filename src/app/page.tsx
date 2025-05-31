@@ -2,18 +2,13 @@
 
 import { useState } from 'react';
 import { Toaster } from 'sonner';
-
 import Banner from '../components/Banner/Banner';
 import ProductGrid from '@/components/ProductGrid/ProductGrid';
-import Group from '@/components/Group/Group';
 import Blogs from '@/components/Blog/Blogs';
-// import Reel from '@/components/Reel/Reel';
-
 import About from '@/components/About/About';
-import Contact from '@/components/contact/contact';
 import FixItBadge from '@/components/badge/fixitbadge';
-
 import Loader from '@/components/Loader/Loader';
+import Reel from '@/components/Reel/Reel';
 
 export default function HomePage() {
   const [loading, setLoading] = useState(true);
@@ -41,20 +36,16 @@ export default function HomePage() {
             <About />
           </section>
 
-          <section id="group">
+          {/* <section id="group">
             <Group />
-          </section>
-
-          <section id="blogs">
-            <Blogs />
-          </section>
-
-          {/* <section id="reel">
-            <Reel />
           </section> */}
 
-          <section id="contact">
-            <Contact />
+          <section id="blogs" className='max-w-6xl mx-auto px-4 pb-16 md:pb-24 lg:pb-32'>
+            <Blogs />
+          </section>
+          
+          <section id="reel">
+            <Reel/>
           </section>
         </main>
       )}

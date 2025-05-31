@@ -246,7 +246,29 @@ const ProductGrid = () => {
               </div>
 
               <div className="p-6 md:w-1/2 text-gray-800 font-sans space-y-6 overflow-y-auto max-h-[80vh]">
-                <h2 className="text-xl font-bold">{selectedProduct.title}</h2>
+                <h2 className="text-xl font-bold flex items-center space-x-2">
+                  {selectedProduct.title.startsWith('ET') ? (
+                    <>
+                      <div className="flex overflow-hidden rounded shadow text-sm font-bold">
+                        <div className="bg-gray-700 text-white px-2 py-0.5 tracking-tight">
+                          {selectedProduct.title.split(' - ')[0].slice(0, 2)}
+                        </div>
+                        <div
+                          className={`${selectedProduct.color?.badgeBg || 'bg-blue-500'} text-white px-2 py-0.5 tracking-tight`}
+                        >
+                          {selectedProduct.title.split(' - ')[0].slice(2)}
+                        </div>
+                      </div>
+                      <span className="text-xl font-semibold">
+                        {selectedProduct.title.includes(' - ') ? selectedProduct.title.split(' - ')[1] : selectedProduct.title}
+                      </span>
+                    </>
+                  ) : (
+                    selectedProduct.title
+                  )}
+                </h2>
+
+
 
                 <ul className="list-disc list-inside space-y-1">
                   {selectedProduct.features.map((feature, i) => (

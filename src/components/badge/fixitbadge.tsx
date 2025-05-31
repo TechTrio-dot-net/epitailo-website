@@ -24,7 +24,7 @@ export default function FixItBadge() {
   }, []);
 
   return (
-    <div className="w-[200px] h-[200px] rounded-full overflow-hidden mx-auto">
+    <div className="w-[100px] h-[100] md:h-[200px] md:w-[200] rounded-full overflow-hidden mx-auto">
       <div
         className="w-full h-full transition-transform duration-300 ease-out"
         style={{ transform: `scale(${scale})` }}

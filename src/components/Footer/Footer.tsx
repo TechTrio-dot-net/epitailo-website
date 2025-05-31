@@ -91,9 +91,9 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <div className="w-full relative">
+    <div className="w-full  relative">
       {/* Contact Form Floating */}
-      <div id="contact-form" className="absolute left-1/2 transform -translate-x-1/2 -translate-y-2/3 w-full px-4 md:px-0 z-20">
+      <div id="contact-form" className="absolute left-1/2 transform -translate-x-1/2 -translate-y-2/3 w-full px-4 pb-16 md:px-0 z-20">
         <motion.div
           ref={ref}
           variants={variants}
@@ -186,7 +186,7 @@ const Footer: React.FC = () => {
               height={64}
               className="w-32 md:w-40"
             />
-            <p className="text-sm md:text-base leading-relaxed">
+            <p className="text-sm md:text-base w-50 leading-relaxed">
               S. N. 610, The Gateway, Nr. Parikh Hospital, Gangotri to Sardar Patel Ring Road,
               Nikol, Ahmedabad, Gujarat 380038.
             </p>

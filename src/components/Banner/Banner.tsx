@@ -8,6 +8,12 @@ const images = [
   // '/images/image3.jpg',
 ];
 
+const titles = [
+  "The Strength of any masterpiece lies in the bonds you don't see.",
+  "Engineers choice, Tilers Trust.",
+];
+
+
 export default function Banner() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
@@ -29,7 +35,7 @@ export default function Banner() {
   }, [currentIndex]);
 
   return (
-    <section className="relative h-screen w-full bg-black text-white flex items-center justify-start px-6 overflow-hidden">
+    <section className="relative h-screen w-full bg-black text-white flex items-center justify-start px-6 overflow-hidden font-poppins">
       {/* Background Images */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Previous Image Sliding Out */}
@@ -65,11 +71,12 @@ export default function Banner() {
 
       {/* Main Content */}
       <div className="relative z-20 text-left w-11/12 sm:w-10/12 md:w-3/4 max-w-[1000px] lg:ml-28 md:ml-20 px-4">
-        <h1 className="text-4xl md:text-6xl font-bold font-serif leading-snug tracking-tight">
-          The Strenght of any masterpiece lies in the bonds you dont see.
+        <h1 className="text-4xl md:text-6xl font-bold leading-snug tracking-tight transition-opacity duration-1000 ease-in-out w-[60%]">
+          {titles[currentIndex]}
         </h1>
 
-        
+
+
       </div>
 
       {/* Social Links Bottom Left */}

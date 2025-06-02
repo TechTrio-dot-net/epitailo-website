@@ -258,7 +258,7 @@ const Footer: React.FC = () => {
                 <FaFacebookF />
               </a>
               <a
-                href="https://www.instagram.com/epitailo.tileadhesive?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                href="https://www.instagram.com/epitailo.tileadhesive"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"

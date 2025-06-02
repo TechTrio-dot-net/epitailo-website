@@ -174,7 +174,7 @@ const ProductGrid = () => {
               transition={{ type: 'spring', stiffness: 80, damping: 18, mass: 0.5 }}
               viewport={{ once: true, amount: 0.3 }}
               onClick={() => setSelectedProduct(product)}
-              className="cursor-pointer bg-white transition p-4 rounded-lg shadow hover:shadow-lg"
+              className="cursor-pointer bg-white transition p-4"
               whileHover={{ scale: 1.03 }}
             >
               <Image

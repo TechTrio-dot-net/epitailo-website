@@ -47,8 +47,8 @@ export default function Navbar() {
             <Image
               src={
                 scrolled
-                  ? '/images/EpitailoLogo.png'
-                  : '/images/EPITailo Logo Light.png'
+                  ? 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934430/Epitailo/vqgoenta4phddmzthlzg.png'
+                  : 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934430/Epitailo/eyxx6ye1dvbicqrcppg1.png'
               }
               alt="Epitailo Logo"
               width={120}
@@ -110,7 +110,7 @@ export default function Navbar() {
             { name: 'Home', id: 'home' },
             { name: 'About', id: 'about' },
             { name: 'Products', id: 'products' },
-            { name: 'Contact', id: 'contact' },
+            { name: 'Contact', id: 'contact-form' },
           ].map((item) => (
             <span
               key={item.id}

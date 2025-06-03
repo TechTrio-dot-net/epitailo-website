@@ -40,8 +40,8 @@ const ProductGrid = () => {
   const products: Product[] = [
     {
       title: 'ET1 - SMALL SIZED FLOOR TILE ADHESIVE',
-      image: '/images/ET1.png',
-      imagestep: '/images/ET 1 Steps.png',
+      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934013/Epitailo/yott6jard5m5ph6x5evs.png',
+      imagestep: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/axvfm7osdu81wcuycm4j.png',
       titlestep: 'How to Apply - ET1 - SMALL SIZED FLOOR TILE ADHESIVE',
       features: ['Ready To Use', 'High-quality Bonding Strength', 'Saves Time And Labour'],
       water: '23%–25%',
@@ -59,8 +59,8 @@ const ProductGrid = () => {
     },
     {
       title: 'ET2 - MEDIUM SIZED WALL TILE ADHESIVE',
-      image: '/images/ET2.png',
-      imagestep: '/images/ET 2 Steps.png',
+      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934014/Epitailo/lysukiep8yno3ehgloha.png',
+      imagestep: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/ebesyev5v3zq8p6jh7ji.png',
       titlestep: 'How to Apply - ET2 - MEDIUM SIZED WALL TILE ADHESIVE',
       features: ['Excellent Bond Strength', 'Self-curing & Rapid Setting', 'No Shrinkage, No Cracks'],
       water: '24%–26%',
@@ -78,8 +78,8 @@ const ProductGrid = () => {
     },
     {
       title: 'ET3 - 4X8 WALL TILES & LARGE FORMAT TILE ADHESIVE',
-      image: '/images/ET3.png',
-      imagestep: '/images/ET 3 Steps.png',
+      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934014/Epitailo/vqk50wdd86wddvmtxda2.png',
+      imagestep: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/bqo7eoke3o8rsbqmlnu0.png',
       titlestep: 'How to Apply - ET3 - 4X8 WALL TILES & LARGE FORMAT TILE ADHESIVE',
       features: ['Slip-resistant Formula', 'Long-lasting Adhesion', 'Works On Multiple Surfaces'],
       water: '24%–27%',
@@ -97,8 +97,8 @@ const ProductGrid = () => {
     },
     {
       title: 'ET4 - HEAVY DUTY STONE ADHESIVE',
-      image: '/images/ET4.png',
-      imagestep: '/images/ET 4 Steps.png',
+      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934015/Epitailo/o9fmunedkhtz0r6gwwbx.png',
+      imagestep: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/v7lhrtka13pmm55hsrvz.png',
       titlestep: 'How to Apply - ET4 - HEAVY DUTY STONE ADHESIVE',
 
       features: ['High Compressive Strength', 'Superior Water Resistance', 'Perfect For Indoor & Outdoor Use'],
@@ -117,8 +117,8 @@ const ProductGrid = () => {
     },
     {
       title: 'BLOCK JOINTING MORTAR',
-      image: '/images/BJM.png',
-      imagestep: '/images/ET 5 Steps.png',
+      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934254/Epitailo/rakmveojobpeiohy50z1.png',
+      imagestep: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/vdycelm3s29jklnpr67c.png',
       titlestep: 'How to Apply - BLOCK JOINTING MORTAR',
 
       features: ['Pre-mixed, only water to be added', 'Thin joint application (2–3 mm)', 'Excellent adhesion & bonding', 'Crack & shrink resistant', 'Cost-effective & saves time'],
@@ -139,7 +139,7 @@ const ProductGrid = () => {
     },
     {
       title: 'SP-5000 PREMIUM EPOXY TILE GROUT',
-      image: '/images/Grout.png',
+      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934012/Epitailo/yj5xqyiha80ucv1ea1yj.png',
 
       features: ['100% Stain Free', 'Anti-Bacterial & Anti-Fungal', 'Strong & Durable', 'Chemical & Temperature Resistant', 'Non-Flammable | No Solvents'],
       potLife: '1 hour (approx.)',

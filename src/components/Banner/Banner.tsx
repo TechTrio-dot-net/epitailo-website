@@ -5,12 +5,12 @@ import { useState, useEffect } from 'react';
 const images = [
   'https://res.cloudinary.com/ddztecdya/image/upload/v1748684200/hocqndm7h4jpesaedugk.jpg',
   'https://res.cloudinary.com/ddztecdya/image/upload/v1748684198/rxkqatcb3njzojrpp9r8.jpg',
-  // '/images/image3.jpg',
 ];
 
 const titles = [
-  "The Strength of any masterpiece lies in the bonds you don't see.",
-  "Engineers choice, Tilers Trust.",
+  // "Bond with the Best ",
+  "Smart Adhesive Made in Bharat",
+  "Engineers choice Tilers Trust"
 ];
 
 
@@ -70,8 +70,8 @@ export default function Banner() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 text-left w-11/12 sm:w-10/12 md:w-3/4 max-w-[1000px] lg:ml-28 md:ml-20 px-4">
-        <h1 className="text-4xl md:text-6xl font-bold leading-snug tracking-tight transition-opacity duration-1000 ease-in-out w-[60%]">
+      <div className="relative z-20 text-left w-11/12 sm:w-10/12 md:w-3/4 max-w-[1000px] lg:ml-28 md:ml-20 px-4 ">
+        <h1 className="text-4xl md:text-6xl font-bold leading-snug tracking-tight transition-opacity duration-1000 ease-in-out w-[30%]">
           {titles[currentIndex]}
         </h1>
 

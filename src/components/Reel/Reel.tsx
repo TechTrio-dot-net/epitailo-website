@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, Volume2, VolumeX } from "lucide-react";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { db } from "@/lib/firebase"; // Make sure your firebase client is correctly exported here
 
 interface Video {
   id: string;
@@ -11,14 +11,22 @@ interface Video {
   reelNumber?: number;
 }
 
-export default function Reel() {
+interface VideoState {
+  muted: boolean;
+  paused: boolean;
+}
+
+export default function ReelPage() {
   const [videoList, setVideoList] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isScrolling, setIsScrolling] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const rafId = useRef<number | null>(null);
-  const scrollSpeed = 0.5; // slower scroll speed for smoothness
+  const scrollSpeed = 0.5;
 
-  // Fetch videos
+  const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+  const [videoStates, setVideoStates] = useState<Record<string, VideoState>>({});
+
   useEffect(() => {
     async function fetchVideos() {
       setLoading(true);
@@ -27,15 +35,15 @@ export default function Reel() {
         const q = query(videosRef, orderBy("reelNumber", "asc"));
         const querySnapshot = await getDocs(q);
         const videosData: Video[] = [];
+        const initialStates: Record<string, VideoState> = {};
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          videosData.push({
-            id: doc.id,
-            url: data.url,
-            reelNumber: data.reelNumber,
-          });
+          const id = doc.id;
+          videosData.push({ id, url: data.url, reelNumber: data.reelNumber });
+          initialStates[id] = { muted: true, paused: true };
         });
         setVideoList(videosData);
+        setVideoStates(initialStates);
       } catch (error) {
         console.error("Error fetching videos:", error);
       } finally {
@@ -45,23 +53,16 @@ export default function Reel() {
     fetchVideos();
   }, []);
 
-  // Auto scroll function
   const autoScroll = useCallback(() => {
-    if (!scrollRef.current) return;
-
+    if (!scrollRef.current || isScrolling) return;
     const container = scrollRef.current;
-
     container.scrollLeft += scrollSpeed;
-
-    // Loop smoothly without jumps
     if (container.scrollLeft >= container.scrollWidth - container.clientWidth) {
       container.scrollLeft = 0;
     }
-
     rafId.current = requestAnimationFrame(autoScroll);
-  }, [scrollSpeed]);
+  }, [isScrolling]);
 
-  // Start auto-scroll on load and when videos available
   useEffect(() => {
     if (!loading && videoList.length > 0) {
       rafId.current = requestAnimationFrame(autoScroll);
@@ -71,124 +72,146 @@ export default function Reel() {
     };
   }, [loading, videoList, autoScroll]);
 
-  // Pause auto scroll on hover/focus
   const handleMouseEnter = () => {
+    setIsScrolling(true);
     if (rafId.current) {
       cancelAnimationFrame(rafId.current);
       rafId.current = null;
     }
   };
 
-  // Resume auto scroll on mouse leave/blur
   const handleMouseLeave = () => {
+    setIsScrolling(false);
     if (!loading && videoList.length > 0 && rafId.current === null) {
       rafId.current = requestAnimationFrame(autoScroll);
     }
   };
 
-  // Scroll left/right buttons
-  const scrollLeft = () => {
-    scrollRef.current?.scrollBy({ left: -220, behavior: "smooth" });
+  const handleVideoMouseEnter = (id: string) => {
+    const video = videoRefs.current[id];
+    if (video) {
+      video.play().catch((err) => console.warn("Autoplay failed:", err));
+      setVideoStates((prev) => ({
+        ...prev,
+        [id]: { ...prev[id], paused: false },
+      }));
+    }
   };
 
-  const scrollRight = () => {
-    scrollRef.current?.scrollBy({ left: 220, behavior: "smooth" });
+  const handleVideoMouseLeave = (id: string) => {
+    const video = videoRefs.current[id];
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+      setVideoStates((prev) => ({
+        ...prev,
+        [id]: { ...prev[id], paused: true },
+      }));
+    }
   };
 
-  // Video hover play/pause and click mute toggle
-  const handleVideoMouseEnter = (e: React.MouseEvent<HTMLVideoElement>) => {
-    e.currentTarget.play();
-  };
-  const handleVideoMouseLeave = (e: React.MouseEvent<HTMLVideoElement>) => {
-    e.currentTarget.pause();
-    e.currentTarget.currentTime = 0;
-  };
-  const handleVideoClick = (e: React.MouseEvent<HTMLVideoElement>) => {
-    const video = e.currentTarget;
-    video.muted = !video.muted;
+  const toggleMute = (id: string) => {
+    const video = videoRefs.current[id];
+    if (video) {
+      video.muted = !video.muted;
+      setVideoStates((prev) => ({
+        ...prev,
+        [id]: { ...prev[id], muted: video.muted },
+      }));
+    }
   };
 
   if (loading) {
     return (
-      <section className="w-full py-12 px-4 bg-[#fafafa] overflow-hidden mb-130 text-center">
-        <p>Loading reels...</p>
+      <section className="w-full py-12 px-4 md:px-6 bg-gray-100 overflow-hidden mb-20 text-center">
+        <div className="max-w-screen-xl mx-auto">
+          <div className="animate-pulse flex space-x-4 overflow-hidden">
+            {[...Array(5)].map((_, i) => (
+              <div
+                key={i}
+                className="w-48 h-64 flex-shrink-0 rounded-xl bg-gray-200"
+              ></div>
+            ))}
+          </div>
+        </div>
       </section>
     );
   }
 
   if (videoList.length === 0) {
     return (
-      <section className="w-full py-12 px-4 bg-[#fafafa] overflow-hidden mb-130 text-center">
-        <p>No reels found.</p>
+      <section className="w-full py-12 px-4 md:px-6 bg-gray-100 overflow-hidden mb-20 text-center">
+        <div className="max-w-screen-xl mx-auto">
+          <p className="text-gray-500">No reels found.</p>
+        </div>
       </section>
     );
   }
 
   return (
-    <section className="w-full py-12 px-4 bg-[#B3B3B3] overflow-hidden mb-130">
-      <div className="max-w-screen-xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <h2 className="text-2xl font-bold text-black">Reels</h2>
-          </div>
+    <section className="w-full py-12 px-4 md:px-6 bg-gray-100 overflow-hidden mb-140">
+      <div className="max-w-screen-xl mx-auto relative">
+        <div className="flex items-center justify-between mb-8 px-2">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+            Featured Reels
+          </h2>
           <a
-            href="https://www.instagram.com/epitailo"
+            href="https://www.instagram.com/epitailo.tileadhesive"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-orange-600 font-semibold cursor-pointer"
+            className="flex items-center text-orange-600 hover:text-orange-700 font-semibold transition-colors group"
           >
-            Watch More <ArrowRight className="ml-1 w-5 h-5" />
+            Watch More
+            <ArrowRight className="ml-1 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
-
         </div>
 
-        {/* Reels Section */}
         <div className="relative">
-          {/* Left Arrow */}
-          <button
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white border shadow p-2 rounded-full z-10"
-          >
-            <ArrowLeft className="text-black w-5 h-5" />
-          </button>
-
-          {/* Scrollable Reels */}
           <div
             ref={scrollRef}
-            className="flex overflow-x-hidden no-scrollbar space-x-4 px-8 touch-pan-x"
+            className="flex overflow-x-auto scroll-smooth no-scrollbar gap-4 px-2 touch-pan-x"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onFocus={handleMouseEnter}
-            onBlur={handleMouseLeave}
           >
             {videoList.map((item) => (
               <div
                 key={item.id}
-                className="w-48 flex-shrink-0 rounded-xl overflow-hidden bg-white border shadow-sm"
+                className="w-64 flex-shrink-0 rounded-xl overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="aspect-[9/16] overflow-hidden bg-black relative cursor-pointer">
+                <div className="aspect-[9/16] bg-black relative group">
                   <video
+                    ref={(el) => {
+                      videoRefs.current[item.id] = el;
+                    }}
                     src={item.url}
-                    className="w-full h-full object-cover"
-                    muted
-                    preload="metadata"
-                    onMouseEnter={handleVideoMouseEnter}
-                    onMouseLeave={handleVideoMouseLeave}
-                    onClick={handleVideoClick}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                    loop
+                    muted={videoStates[item.id]?.muted}
+                    playsInline
+                    onMouseEnter={() => handleVideoMouseEnter(item.id)}
+                    onMouseLeave={() => handleVideoMouseLeave(item.id)}
                   />
+
+                  <div className="absolute bottom-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button
+                      type="button"
+                      className="bg-black/50 text-white p-1.5 rounded-full"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleMute(item.id);
+                      }}
+                    >
+                      {videoStates[item.id]?.muted ? (
+                        <VolumeX className="w-4 h-4" />
+                      ) : (
+                        <Volume2 className="w-4 h-4" />
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Right Arrow */}
-          <button
-            onClick={scrollRight}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white border shadow p-2 rounded-full z-10"
-          >
-            <ArrowRight className="text-black w-5 h-5" />
-          </button>
         </div>
       </div>
     </section>

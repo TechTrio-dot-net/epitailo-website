@@ -58,7 +58,7 @@ const HeroBanner = () => {
     <div className="relative w-full h-[600px] md:h-[700px] overflow-hidden font-poppins">
       {/* Background Grid */}
       <Image
-        src="/images/bg grid.png"
+        src="https://res.cloudinary.com/ddztecdya/image/upload/v1748934429/Epitailo/j1j6xhbkpesl5axfnzyy.png"
         alt="Grid Background"
         fill
         className="object-cover z-0"
@@ -72,7 +72,7 @@ const HeroBanner = () => {
         className="absolute inset-0 z-10 mix-blend-multiply pointer-events-none"
       >
         <Image
-          src="/images/Gate.png"
+          src="https://res.cloudinary.com/ddztecdya/image/upload/v1748934433/Epitailo/qqplpy4p9cwsturtdwki.png"
           alt="Gate Overlay"
           fill
           className="object-cover"
@@ -89,7 +89,7 @@ const HeroBanner = () => {
         className="absolute top-6 left-6 w-14 h-14 md:top-8 md:left-[205px] md:w-[965px] md:h-[136px] z-20"
       >
         <Image
-          src="/images/ABOUT US BANNER quote.png"
+          src="https://res.cloudinary.com/ddztecdya/image/upload/v1748934428/Epitailo/pyanrkbytpovm73vicju.png"
           alt="Quote Icon"
           fill
           className="object-contain"

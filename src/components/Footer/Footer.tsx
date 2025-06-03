@@ -156,7 +156,7 @@ const Footer: React.FC = () => {
             <Button
               type="button" // avoid form submit on enter
               onClick={handleSend}
-              className="w-full h-12 md:h-14 text-base md:text-lg font-semibold bg-[#898989] hover:bg-[#7a7a7a] focus:outline-none focus:ring-4 focus:ring-[#898989]/30 text-white rounded-lg md:rounded-xl transition-all flex items-center justify-center gap-2"
+              className="w-full h-12 md:h-14 text-base md:text-lg font-semibold bg-[#898989] hover:bg-[#4D4D4D] focus:outline-none focus:ring-4 focus:ring-[#898989]/30 text-white rounded-lg md:rounded-xl transition-all flex items-center justify-center gap-2"
             >
               <FaWhatsapp className="text-lg" />
               Send
@@ -270,13 +270,13 @@ const Footer: React.FC = () => {
             <Button
               type="button"
               onClick={handleClick}
-              className="bg-[#007E4F] hover:bg-[#005f39] rounded-md px-6 py-3 text-white font-semibold transition-colors"
+              className="bg-[#898989] hover:bg-[#4D4D4D] rounded-md px-6 py-3 text-white font-semibold transition-colors"
             >
               Download Brochure
             </Button>
             <div className="mt-4">
               <Image
-                src="/images/MakeInIndia.png"
+                src="https://res.cloudinary.com/ddztecdya/image/upload/v1748934430/Epitailo/t33lhji1iu2iwid838he.png"
                 alt="Make in India"
                 width={150}
                 height={130}

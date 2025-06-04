@@ -13,11 +13,9 @@ const mobileImages = [
 ];
 
 const titles = [
-  // "Bond with the Best ",
   "Smart Adhesive Made in Bharat",
   "Engineers choice Tilers Trust"
 ];
-
 
 export default function Banner() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,7 +24,8 @@ export default function Banner() {
   const [isMobile, setIsMobile] = useState(false);
 
   const images = isMobile ? mobileImages : desktopImages;
-useEffect(() => {
+
+  useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -53,8 +52,7 @@ useEffect(() => {
   }, [currentIndex, images.length]);
 
   return (
-    <section className="relative h-[100vw] md:h-screen w-full bg-black text-white flex items-center justify-start px-6 overflow-hidden font-poppins">
-
+    <section className="relative h-[100vw] md:h-screen w-full bg-black text-white flex items-center justify-start px-6 overflow-hidden font-poppins mt-16 md:mt-0">
       {/* Background Images */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Previous Image Sliding Out */}
@@ -89,13 +87,10 @@ useEffect(() => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 text-left w-11/12 sm:w-10/12 md:w-3/4 max-w-[1000px] lg:ml-28 md:ml-20 px-4 ">
+      <div className="relative z-20 text-left w-11/12 sm:w-10/12 md:w-3/4 max-w-[1000px] lg:ml-28 md:ml-20 px-4">
         <h1 className="hidden md:block text-4xl md:text-6xl font-bold leading-snug tracking-tight transition-opacity duration-1000 ease-in-out w-[30%]">
-  {titles[currentIndex]}
-</h1>
-
-
-
+          {titles[currentIndex]}
+        </h1>
       </div>
 
       {/* Social Links Bottom Left */}
@@ -117,7 +112,6 @@ useEffect(() => {
           INSTAGRAM
         </a>
       </div>
-
 
       {/* Animations */}
       <style jsx>{`

@@ -40,8 +40,10 @@ const ProductGrid = () => {
   const products: Product[] = [
     {
       title: 'ET1 - SMALL SIZED FLOOR TILE ADHESIVE',
-      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934013/Epitailo/yott6jard5m5ph6x5evs.png',
-      imagestep: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/axvfm7osdu81wcuycm4j.png',
+      image:
+        'https://res.cloudinary.com/ddztecdya/image/upload/v1748934013/Epitailo/yott6jard5m5ph6x5evs.png',
+      imagestep:
+        'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/axvfm7osdu81wcuycm4j.png',
       titlestep: 'How to Apply - ET1 - SMALL SIZED FLOOR TILE ADHESIVE',
       features: ['Ready To Use', 'High-quality Bonding Strength', 'Saves Time And Labour'],
       water: '23%–25%',
@@ -59,8 +61,10 @@ const ProductGrid = () => {
     },
     {
       title: 'ET2 - MEDIUM SIZED WALL TILE ADHESIVE',
-      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934014/Epitailo/lysukiep8yno3ehgloha.png',
-      imagestep: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/ebesyev5v3zq8p6jh7ji.png',
+      image:
+        'https://res.cloudinary.com/ddztecdya/image/upload/v1748934014/Epitailo/lysukiep8yno3ehgloha.png',
+      imagestep:
+        'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/ebesyev5v3zq8p6jh7ji.png',
       titlestep: 'How to Apply - ET2 - MEDIUM SIZED WALL TILE ADHESIVE',
       features: ['Excellent Bond Strength', 'Self-curing & Rapid Setting', 'No Shrinkage, No Cracks'],
       water: '24%–26%',
@@ -78,8 +82,10 @@ const ProductGrid = () => {
     },
     {
       title: 'ET3 - 4X8 WALL TILES & LARGE FORMAT TILE ADHESIVE',
-      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934014/Epitailo/vqk50wdd86wddvmtxda2.png',
-      imagestep: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/bqo7eoke3o8rsbqmlnu0.png',
+      image:
+        'https://res.cloudinary.com/ddztecdya/image/upload/v1748934014/Epitailo/vqk50wdd86wddvmtxda2.png',
+      imagestep:
+        'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/bqo7eoke3o8rsbqmlnu0.png',
       titlestep: 'How to Apply - ET3 - 4X8 WALL TILES & LARGE FORMAT TILE ADHESIVE',
       features: ['Slip-resistant Formula', 'Long-lasting Adhesion', 'Works On Multiple Surfaces'],
       water: '24%–27%',
@@ -97,10 +103,11 @@ const ProductGrid = () => {
     },
     {
       title: 'ET4 - HEAVY DUTY STONE ADHESIVE',
-      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934015/Epitailo/o9fmunedkhtz0r6gwwbx.png',
-      imagestep: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/v7lhrtka13pmm55hsrvz.png',
+      image:
+        'https://res.cloudinary.com/ddztecdya/image/upload/v1748934015/Epitailo/o9fmunedkhtz0r6gwwbx.png',
+      imagestep:
+        'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/v7lhrtka13pmm55hsrvz.png',
       titlestep: 'How to Apply - ET4 - HEAVY DUTY STONE ADHESIVE',
-
       features: ['High Compressive Strength', 'Superior Water Resistance', 'Perfect For Indoor & Outdoor Use'],
       water: '26%–28%',
       potLife: '1.5 - 2 hrs @ 23°C',
@@ -117,11 +124,18 @@ const ProductGrid = () => {
     },
     {
       title: 'BLOCK JOINTING MORTAR',
-      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934254/Epitailo/rakmveojobpeiohy50z1.png',
-      imagestep: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/vdycelm3s29jklnpr67c.png',
+      image:
+        'https://res.cloudinary.com/ddztecdya/image/upload/v1748934254/Epitailo/rakmveojobpeiohy50z1.png',
+      imagestep:
+        'https://res.cloudinary.com/ddztecdya/image/upload/v1748934001/Epitailo/vdycelm3s29jklnpr67c.png',
       titlestep: 'How to Apply - BLOCK JOINTING MORTAR',
-
-      features: ['Pre-mixed, only water to be added', 'Thin joint application (2–3 mm)', 'Excellent adhesion & bonding', 'Crack & shrink resistant', 'Cost-effective & saves time'],
+      features: [
+        'Pre-mixed, only water to be added',
+        'Thin joint application (2–3 mm)',
+        'Excellent adhesion & bonding',
+        'Crack & shrink resistant',
+        'Cost-effective & saves time',
+      ],
       water: '24%–28%',
       potLife: '2 HOURS',
       mixRatio: '3:1(Powder:Water',
@@ -139,9 +153,15 @@ const ProductGrid = () => {
     },
     {
       title: 'SP-5000 PREMIUM EPOXY TILE GROUT',
-      image: 'https://res.cloudinary.com/ddztecdya/image/upload/v1748934012/Epitailo/yj5xqyiha80ucv1ea1yj.png',
-
-      features: ['100% Stain Free', 'Anti-Bacterial & Anti-Fungal', 'Strong & Durable', 'Chemical & Temperature Resistant', 'Non-Flammable | No Solvents'],
+      image:
+        'https://res.cloudinary.com/ddztecdya/image/upload/v1748934012/Epitailo/yj5xqyiha80ucv1ea1yj.png',
+      features: [
+        '100% Stain Free',
+        'Anti-Bacterial & Anti-Fungal',
+        'Strong & Durable',
+        'Chemical & Temperature Resistant',
+        'Non-Flammable | No Solvents',
+      ],
       potLife: '1 hour (approx.)',
       shelfLife: '12 months',
       color: {
@@ -158,42 +178,41 @@ const ProductGrid = () => {
 
   return (
     <>
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 gap-8 m-10 p-10 max-w-6xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        {products.map((product, i) => {
-          const direction = i % 2 === 0 ? -100 : 100;
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: direction }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ type: 'spring', stiffness: 80, damping: 18, mass: 0.5 }}
-              viewport={{ once: true, amount: 0.3 }}
-              onClick={() => setSelectedProduct(product)}
-              className="cursor-pointer bg-white transition p-4"
-              whileHover={{ scale: 1.03 }}
-            >
-              <Image
-                src={product.image}
-                alt={product.title}
-                width={300}
-                height={300}
-                className="w-full h-72 object-contain"
-              />
-              <h2 className="mt-4 text-lg font-semibold text-center">
+      <motion.div className="overflow-x-hidden">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 m-4 md:ml-45 p-4 md:p-6 max-w-6xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+        >
+          {products.map((product, i) => {
+            const direction = i % 2 === 0 ? -100 : 100;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: direction }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ type: 'spring', stiffness: 80, damping: 18, mass: 0.5 }}
+                viewport={{ once: true, amount: 0.3 }}
+                onClick={() => setSelectedProduct(product)}
+                className="cursor-pointer bg-white transition p-4"
+                whileHover={{ scale: 1.03 }}
+              >
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  width={300}
+                  height={300}
+                  className="w-full h-72 object-contain"
+                />
+                <h2 className="mt-4 text-lg font-semibold text-center">
                 {product.title.startsWith('ET') ? (
                   <div className="flex flex-col items-center space-y-1">
                     <div className="flex overflow-hidden rounded shadow text-sm font-bold">
                       <div className="bg-gray-700 text-white px-2 py-0.5 tracking-tight">
                         {product.title.split(' - ')[0].slice(0, 2)}
                       </div>
-                      <div
-                        className={`${product.color?.badgeBg || 'bg-blue-500'} text-white px-2 py-0.5 tracking-tight`}
-                      >
+                      <div className={`${product.color.badgeBg} text-white px-2 py-0.5 tracking-tight`}>
                         {product.title.split(' - ')[0].slice(2)}
                       </div>
                     </div>
@@ -205,9 +224,10 @@ const ProductGrid = () => {
                   product.title
                 )}
               </h2>
-            </motion.div>
-          );
-        })}
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </motion.div>
 
       <AnimatePresence>
@@ -260,15 +280,15 @@ const ProductGrid = () => {
                         </div>
                       </div>
                       <span className="text-xl font-semibold">
-                        {selectedProduct.title.includes(' - ') ? selectedProduct.title.split(' - ')[1] : selectedProduct.title}
+                        {selectedProduct.title.includes(' - ')
+                          ? selectedProduct.title.split(' - ')[1]
+                          : selectedProduct.title}
                       </span>
                     </>
                   ) : (
                     selectedProduct.title
                   )}
                 </h2>
-
-
 
                 <ul className="list-disc list-inside space-y-1">
                   {selectedProduct.features.map((feature, i) => (
@@ -277,11 +297,31 @@ const ProductGrid = () => {
                 </ul>
 
                 <div className="space-y-1 text-sm">
-                  {selectedProduct.water && <p><strong>Water:</strong> {selectedProduct.water}</p>}
-                  {selectedProduct.potLife && <p><strong>Pot Life:</strong> {selectedProduct.potLife}</p>}
-                  {selectedProduct.coverage && <p><strong>Coverage:</strong> {selectedProduct.coverage}</p>}
-                  {selectedProduct.mixRatio && <p><strong>Mix Ratio:</strong> {selectedProduct.mixRatio}</p>}
-                  {selectedProduct.shelfLife && <p><strong>Shelf Life:</strong> {selectedProduct.shelfLife}</p>}
+                  {selectedProduct.water && (
+                    <p>
+                      <strong>Water:</strong> {selectedProduct.water}
+                    </p>
+                  )}
+                  {selectedProduct.potLife && (
+                    <p>
+                      <strong>Pot Life:</strong> {selectedProduct.potLife}
+                    </p>
+                  )}
+                  {selectedProduct.coverage && (
+                    <p>
+                      <strong>Coverage:</strong> {selectedProduct.coverage}
+                    </p>
+                  )}
+                  {selectedProduct.mixRatio && (
+                    <p>
+                      <strong>Mix Ratio:</strong> {selectedProduct.mixRatio}
+                    </p>
+                  )}
+                  {selectedProduct.shelfLife && (
+                    <p>
+                      <strong>Shelf Life:</strong> {selectedProduct.shelfLife}
+                    </p>
+                  )}
                 </div>
 
                 {selectedProduct.imagestep && (

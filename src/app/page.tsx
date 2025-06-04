@@ -37,9 +37,6 @@ export default function HomePage() {
             <About />
           </section>
 
-          {/* <section id="group">
-            <Group />
-          </section> */}
 
           <section id="blogs" className='max-w-6xl mx-auto px-4 pb-16 md:pb-24 lg:pb-32'>
             <Blogs />

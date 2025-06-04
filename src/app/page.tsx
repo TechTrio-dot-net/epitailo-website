@@ -23,9 +23,10 @@ export default function HomePage() {
         <main>
           <section id="home">
             <Banner />
-            <div className="absolute bottom-0 left-[75%] sm:left-3/4 md:left-[90%] transform -translate-x-1/2 translate-y-1/2 z-20">
+            <div className="hidden sm:block absolute bottom-0 left-3/4 md:left-[90%] transform -translate-x-1/2 translate-y-1/2 z-20">
               <FixItBadge />
             </div>
+
           </section>
 
           <section id="products">
@@ -43,9 +44,9 @@ export default function HomePage() {
           <section id="blogs" className='max-w-6xl mx-auto px-4 pb-16 md:pb-24 lg:pb-32'>
             <Blogs />
           </section>
-          
+
           <section id="reel">
-            <Reel/>
+            <Reel />
           </section>
         </main>
       )}

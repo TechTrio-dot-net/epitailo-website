@@ -287,8 +287,23 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="text-center py-4 text-xs md:text-sm text-gray-300 select-none">
-          © 2025 EPITAILO&trade; - All rights reserved.
+        <div className="flex flex-col md:flex-row items-center justify-between px-6 md:px-24 py-4 text-xs md:text-sm text-gray-300 select-none">
+          <div className="text-center md:text-left w-full md:w-auto mb-2 md:mb-0">
+            © 2025 EPITAILO™ - All rights reserved.
+          </div>
+          <div className="text-center md:text-right w-full md:w-auto">
+            Designed by{' '}
+            <span className="font-semibold">
+              <a
+                href="https://www.instagram.com/unicolors.in?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                Unicolors
+              </a>
+            </span>
+          </div>
         </div>
       </div>
     </div>

@@ -6,22 +6,32 @@ import Image from 'next/image';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 10);
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      // Toggle shadow background
+      setScrolled(currentScroll > 10);
+
+      // Hide navbar on scroll down, show on scroll up
+      if (currentScroll > lastScrollY && currentScroll > 100) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+
+      setLastScrollY(currentScroll);
     };
 
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
   }, [menuOpen]);
 
   const handleScrollTo = (id: string) => {
@@ -37,7 +47,7 @@ export default function Navbar() {
       <nav
         className={`fixed left-0 w-full flex justify-between items-center p-4 z-50 transition-all duration-300 ${
           scrolled ? 'bg-white shadow-md' : 'bg-none'
-        }`}
+        } ${showNavbar ? 'top-0' : '-top-20'}`}
       >
         <div className="transition-all duration-300">
           <div
@@ -57,19 +67,6 @@ export default function Navbar() {
             />
           </div>
         </div>
-{/* 
-        {!menuOpen && (
-          <button
-            className={`hidden md:block border px-4 py-1 rounded-full transition ${
-              scrolled
-                ? 'text-black border-black hover:bg-black hover:text-white'
-                : 'text-white border-white hover:bg-white hover:text-black'
-            }`}
-            onClick={() => handleScrollTo('contact')}
-          >
-            Get Quote
-          </button>
-        )} */}
 
         <div
           className="flex flex-col space-y-1 cursor-pointer z-30 lg:mr-28 md:mr-20 px-4"
